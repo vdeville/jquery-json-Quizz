@@ -6,7 +6,7 @@
 </head>
 <body>
 <center>
-    <h1>Quizz</h1>
+    <h1>Quiz</h1>
     <div class="quizz"></div>
     <button id="start">Démarer le quizz</button>
 </center>
@@ -48,7 +48,10 @@
                     getQR(nTir);
                 }
                 else{
-                    alert('Nop');
+                    alert('mauvaise réponse');
+
+                    nTir = tirageQuestion();
+                    getQR(nTir);
                 }
             });
         });
