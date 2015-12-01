@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz MOS</title>
+</head>
+<body>
+<center>
+    <h1>Quizz</h1>
+    <div class="quizz"></div>
+    <button id="start">Démarer le quizz</button>
+</center>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="script.js" type="text/javascript"></script>
+<script>
+    var score = 0;
+    var test;
+    var scoreTemp = 0;
+    $('#start').click(function(){
+
+        var nTir = tirageQuestion();
+        getQR(nTir);
+
+        $('#start').remove();
+
+        $('<button id="next">Tirer une nouvelle question</button>').appendTo('center');
+        $('<br/><button id="submit">Valider</button>').appendTo('center');
+
+        $('#next').click(function(){
+            nTir = tirageQuestion();
+            getQR(nTir);
+        });
+
+        $('#submit').click(function(){
+            checkR(nTir, function callback(result){
+                if(result == true){
+
+                    getPoint(nTir, function callback2(result){
+                        test = result;
+                        console.log(test);
+                    });
+                    console.log(test);
+                    //console.log('ScoreTemp ' + scoreTemp);
+
+                    //score = score + scoreTemp;
+                    //console.log('Score total = ' + score);
+                    nTir = tirageQuestion();
+                    getQR(nTir);
+                }
+                else{
+                    alert('Nop');
+                }
+            });
+        });
+    });
+
+//    getPoint(1, function(result){
+  //      console.log(result)
+    //});
+
+    //getQR(tirageQuestion());
+</script>
+</body>
+</html>
